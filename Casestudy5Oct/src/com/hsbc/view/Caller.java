@@ -52,27 +52,40 @@ public class Caller {
 			        e.store(new1);
 		            break;
 		 
-		  case 2: System.out.println("arranging asc by ID");
+		  case 2: System.out.println("Enter 1. sort in ascending and descending by ID \n 2. sort in ascending and descending by DOB 3. sort in ascending and descending by salary");
+                          int ch=sc.nextInt();
+                          
+                          if(ch==1)
+                          {
+			  System.out.println("arranging asc by ID");
 		          System.out.println(e.sortIdAsc());
-		          
+                         
+		        
 		          System.out.println("descending asc by ID");
 		          System.out.println(e.sortIdDesc());
+			}
+			else if(ch==2)
+			{
 		          
 		          System.out.println("arranging asc by dob");
 		          System.out.println(e.sortDobAsc());
 		          
 		          System.out.println("descending desc by dob");
 		          System.out.println(e.sortDobDesc());
-		          
+			}
+			else if(ch==3)
+			{		          
 		          System.out.println("ascending asc by salary");
 		          System.out.println(e.sortSalaryAsc());
 		          
 		          System.out.println("descending desc by salary");
 		          System.out.println(e.sortSalaryDesc());
+			}
 		          break;
 		          
 		  case 3: ArrayList<Employee> top=(ArrayList<Employee>) e.topThree();    
 		          System.out.println(top);
+		          break;
 		          
 		  case 4: exit=true; 
 		          break;
