@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.org.model.beans.Account;
+import com.org.model.exceptions.InsufficientFundException;
 
 public class CollectionBackedAccountDaoImpl implements AccountDao {
 
@@ -14,22 +15,46 @@ public class CollectionBackedAccountDaoImpl implements AccountDao {
 		return account;
 	}
 
-	@Override
-	public Account updateBalance(int accountNumber, double amount) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+	
 
 	@Override
-	public Account getAccount(int accountNumber) {
-		// TODO Auto-generated method stub
-		return null;
+	public Account getAccount(int accountNumber)  {
+		
+		return(database.get(accountNumber-1));
+		
 	}
 
 	@Override
 	public List<Account> getAccounts() {
-		// TODO Auto-generated method stub
+	
 		return database;
+	}
+
+
+
+
+	@Override
+	public Account debit(int accountNumber, double amount) throws InsufficientFundException {
+
+		Account a=database.get(accountNumber-1);
+		if(a.getBalance()<amount)
+			throw new InsufficientFundException("You dont have sufficient funds to proceed");
+		else
+			
+		a.setBalance(a.getBalance()-amount) ;
+		return a;
+	}
+
+
+
+
+	@Override
+	public Account credit(int accountNumber, double amount) {
+		
+		Account a=database.get(accountNumber-1);
+		a.setBalance(a.getBalance()+amount);
+		return a;
 	}
 
 }
